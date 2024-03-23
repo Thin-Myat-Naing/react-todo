@@ -22,16 +22,20 @@ export const todoSlice = createSlice({
          const todoList = window.localStorage.getItem('todoList');
          if(todoList) {
             const todoListArr = JSON.parse(todoList);
-            todoListArr.push (...action.payload, );
-            window.localStorage.setItem('todoList', JSON.stringify(todoListArr));
+            todoListArr.push ({
+               ...action.payload, 
+            });
+            window.localStorage.setItem('todoList', 
+            JSON.stringify(todoListArr));
+         } else {
+            window.localStorage.setItem(
+               'todoList', 
+               JSON.stringify([{ ...action.payload }])
+            );
          }
-         else {
-            window.localStorage.setItem('todoList', JSON.stringify([{...action.payload, }]));
-         }
-
-      }
-   }
-})
+      },
+   },
+});
 
 export const {addTodo} = todoSlice.actions;
-export default todoSlice.reducers;
+export default todoSlice.reducer;

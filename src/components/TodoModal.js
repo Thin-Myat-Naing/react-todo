@@ -5,8 +5,9 @@ import styles from '../styles/modules/modal.module.scss';
 import { MdOutlineClose } from "react-icons/md";
 import { addTodo } from '../slices/todoSlice';
 import {v4 as uuid} from 'uuid';
+import { toast } from 'react-hot-toast';
 
-function TodoModal({modalOpen, setModalOpen}) {
+function TodoModal({ modalOpen, setModalOpen }) {
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState('incomplete');
 
@@ -15,12 +16,19 @@ function TodoModal({modalOpen, setModalOpen}) {
   const handleSubmit = (e) => {
   e.preventDefault();
   if(title && status) {
-    dispatch(addTodo({
-      id : uuid(),
-      title ,
-      status ,
-      time : new Date().toLocaleString(),
-    }));
+    dispatch(
+      addTodo({
+        id : uuid(),
+        title,
+        status,
+        time : new Date().toLocaleDateString(),
+      })
+    );
+    toast.success('Task Added Successfully');
+    setModalOpen(false);
+  }
+  else {
+    toast.error("Title shouldn't be empty;")
   }
   };
 

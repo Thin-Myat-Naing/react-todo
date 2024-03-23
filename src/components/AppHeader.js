@@ -5,10 +5,10 @@ import TodoModal from './TodoModal';
 
 
 function AppHeader() {
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <div className={styles.appHeader}>
-      <Button variant={'secondary'} onClick={() => setModalOpen(true)}>Add Task</Button>
+      <Button variant={'primary'} onClick={() => setModalOpen(true)}>Add Task</Button>
       <SelectButton id="status">
          <option value="all">All</option>
          <option value="incomplete">Incomplete</option>
